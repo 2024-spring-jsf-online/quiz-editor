@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class QuizService {
 
-  constructor() { }
+  constructor() {}
 
   loadQuizzes = () => {
     const quizzesFromWeb: any[] = [
@@ -27,5 +27,14 @@ export class QuizService {
     ];
 
     return quizzesFromWeb;
+  };
+
+  addNewQuiz = () => {
+    const newQuiz = {
+        quizName: 'Untitled Quiz',
+        quizQuestions: []
+      };
+
+    return newQuiz;
   };
 }
