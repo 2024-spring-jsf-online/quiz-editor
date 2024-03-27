@@ -54,5 +54,6 @@ export class AppComponent implements OnInit {
     ];
 
     this.quizzes = allQuizzes;
+    this.selectQuiz(newQuiz);
   };
 }
