@@ -11,7 +11,7 @@ export class QuizService {
     const quizzesFromWeb: any[] = [
       {
         name: 'Quiz 1', 
-        qustions: [
+        questions: [
           {
             name: 'Question 1'
           },

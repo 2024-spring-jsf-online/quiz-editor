@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
    
     this.quizzes = quizzes.map(x=> ({
       quizName: x.name
-      , quizQuestions: x.questions.map((y:any) => ({
+      , quizQuestions: x.questions.map((y: any) => ({
         questionName: y.name
       }))
     }));
@@ -38,7 +38,5 @@ export class AppComponent implements OnInit {
   };
 
   quizzes: QuizDisplay[] = [];
-
-
 
 }
