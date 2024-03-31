@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col md 4">
-      <button class="btn btn-outline-success mt-3 mb-3">
+      <button class="btn btn-outline-success mt-3 mb-3"
+        (click)="addNewQuiz()"
+      >
         Add New Quiz
       </button>
    
@@ -22,6 +24,8 @@
       </div>
       </div>
     </div>
+
+    <!-- start of output div's -->
     <div class="class col md 8"
       *ngIf="selectedQuiz != undefined"
     >
@@ -33,14 +37,20 @@
           Cancel
         </button>
     </div>
+
+    <!-- start of editable list -->
     <div class="card mt-3">
       <div class="card-header">
         General
       </div>
       <div class="card-body">
-        {{ selectedQuiz.quizName }}
+          <input 
+          type="text"
+          [(ngModel)]="selectedQuiz.quizName"
+          class="form-control">
       </div>
     </div>
+
     <div class="card mt-3">
     <div class="card-header">
       Questions
@@ -49,6 +59,7 @@
       Coming Soon
     </div>
     </div>
+
     <div class="card mt-3">
   <div class="card-header">
     Other
@@ -58,6 +69,8 @@
   </div>
     </div>
   </div>
+
+  <!-- start of idle-page instructions -->
   <div class="col md-8 mt-3"
     *ngIf="selectedQuiz == undefined"
   >

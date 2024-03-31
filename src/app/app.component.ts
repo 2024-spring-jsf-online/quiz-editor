@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
+import { FormsModule } from '@angular/forms';
 
 interface QuizDisplay {
   quizName: string;
@@ -46,6 +47,16 @@ export class AppComponent implements OnInit {
   };
 
 
-
+addNewQuiz = () => {
+    const newQuiz = {
+      quizName: "Untitled Quiz"
+      , quizQuestions: []
+    };
+    this.quizzes = [
+      ...this.quizzes
+      , newQuiz
+    ];
+    this.selectedQuiz = newQuiz;
+};
   
 }
