@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   title = 'quiz-editor';
   quizzes: QuizDisplay[] = [];
   selectedQuiz: QuizDisplay | undefined = undefined;
+  newQuestion: string = '';
 
   constructor(public quizSvc: QuizService) {}
 
@@ -43,12 +44,10 @@ export class AppComponent implements OnInit {
   }
 
   saveQuizName() {
-    // You can add logic here to save the edited quiz name
     console.log('Quiz name saved:', this.selectedQuiz?.quizName);
   }
 
   cancelEdit() {
-    // You can add logic here to cancel the editing of the quiz name
     console.log('Edit cancelled');
   }
 
@@ -59,5 +58,20 @@ export class AppComponent implements OnInit {
     };
     this.quizzes = [...this.quizzes, newQuiz];
     this.selectedQuiz = newQuiz;
+  }
+
+  addNewQuestion() {
+    if (this.newQuestion.trim() !== '') {
+      if (this.selectedQuiz) {
+        this.selectedQuiz.quizQuestions.push({ questionName: this.newQuestion });
+        this.newQuestion = '';
+      }
+    }
+  }
+
+  removeQuestion(index: number) {
+    if (this.selectedQuiz) {
+      this.selectedQuiz.quizQuestions.splice(index, 1);
+    }
   }
 }

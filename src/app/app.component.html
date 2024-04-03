@@ -6,12 +6,13 @@
       </button>
       <div class="card">
         <div class="list-group list-group-flush">
-          <button class="list-group-item list-group-item-action d-flex justify-content-between" *ngFor="let q of quizzes" (click)="selectQuiz(q)" [class.active]="q === selectedQuiz">
-              {{ q.quizName }}
-              <small class="font-italic text-muted">
-                {{ q.quizQuestions.length }} questions
-              </small>
-          </button> 
+          <button class="list-group-item list-group-item-action d-flex justify-content-between"
+            *ngFor="let q of quizzes" (click)="selectQuiz(q)" [class.active]="q === selectedQuiz">
+            {{ q.quizName }}
+            <small class="font-italic text-muted">
+              {{ q.quizQuestions.length }} questions
+            </small>
+          </button>
         </div>
       </div>
     </div>
@@ -31,29 +32,38 @@
             <input type="text" class="form-control" [(ngModel)]="selectedQuiz.quizName">
           </div>
         </div>
-        <div class="card mt-3">
-          <div class="card-header">
-            Questions
+        <div class="col-md-8" *ngIf="selectedQuiz != undefined">
+          <div class="card mt-3">
+            <div class="card-header">
+              Questions
+            </div>
+            <div class="card-body">
+              <input type="text" class="form-control mb-2" [(ngModel)]="newQuestion"
+                placeholder="Write any questions you have right here">
+              <button class="btn btn-outline-success mb-2" (click)="addNewQuestion()">Add New Question</button>
+              <div *ngFor="let question of selectedQuiz.quizQuestions; let i = index">
+                <div class="input-group mb-2">
+                  <input type="text" class="form-control" [(ngModel)]="question.questionName">
+                  <button class="btn btn-outline-danger" (click)="removeQuestion(i)">Remove</button>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="card-body">
-            <input type="text" class="form-control">
-          </div>
-        </div>
-        <div class="card mt-3">
-          <div class="card-header">
-            Other
-          </div>
-          <div class="card-body">
-            Coming soon . . .
+          <div class="card mt-3">
+            <div class="card-header">
+              Other
+            </div>
+            <div class="card-body">
+              Coming soon . . .
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-8 mt-3" *ngIf="selectedQuiz == undefined">
+      <div class="col-md-8 mt-3" *ngIf="selectedQuiz == undefined">
         <div class="card bg-light text-center pt-3">
-            <h4>No Quiz Selected</h4>
-            <p>Please select or add a new quiz</p>
+          <h4>No Quiz Selected</h4>
+          <p>Please select or add a new quiz</p>
         </div>
+      </div>
     </div>
   </div>
-</div>
