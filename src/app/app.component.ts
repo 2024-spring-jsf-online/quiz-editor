@@ -15,6 +15,7 @@ interface QuestionDisplay {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit {
   title = 'quiz-editor';
   quizzes: QuizDisplay[] = [];
@@ -23,18 +24,18 @@ export class AppComponent implements OnInit {
   constructor(public quizSvc: QuizService) {}
 
   ngOnInit(): void {
+    this.loadQuizzes();
+  }
+  
+  loadQuizzes() {
     const quizzes = this.quizSvc.loadQuizzes();
-    console.log(quizzes);
-
     this.quizzes = quizzes.map(x => ({
       quizName: x.name,
       quizQuestions: x.questions.map((y: any) => ({
         questionName: y.name
       }))
     }));
-
-    console.log(this.quizzes);
-  }
+  };
 
   selectQuiz(q: QuizDisplay) {
     this.selectedQuiz = q;
@@ -49,5 +50,14 @@ export class AppComponent implements OnInit {
   cancelEdit() {
     // You can add logic here to cancel the editing of the quiz name
     console.log('Edit cancelled');
+  }
+
+  addNewQuiz() {
+    const newQuiz: QuizDisplay = {
+      quizName: 'Untitled Quiz',
+      quizQuestions: []
+    };
+    this.quizzes = [...this.quizzes, newQuiz];
+    this.selectedQuiz = newQuiz;
   }
 }

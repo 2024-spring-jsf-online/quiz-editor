@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-      <button class="btn btn-outline-success mt-3 mb-3">
+      <button class="btn btn-outline-success mt-3 mb-3" (click)="addNewQuiz()">
         Add New Quiz
       </button>
       <div class="card">
@@ -50,9 +50,9 @@
       </div>
     </div>
     <div class="col-md-8 mt-3" *ngIf="selectedQuiz == undefined">
-        <div class="card bg-light text-center">
-            <h2>No Quiz Selected</h2>
-            <p>Select or add a new quiz</p>
+        <div class="card bg-light text-center pt-3">
+            <h4>No Quiz Selected</h4>
+            <p>Please select or add a new quiz</p>
         </div>
     </div>
   </div>
