@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
     console.log('Edit cancelled');
   }
 
-  addNewQuiz() {
+  addNewQuiz = () => {
     const newQuiz: QuizDisplay = {
       quizName: 'Untitled Quiz',
       quizQuestions: []
@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
     this.selectedQuiz = newQuiz;
   }
 
-  addNewQuestion() {
+  addNewQuestion = () => {
     if (this.newQuestion.trim() !== '') {
       if (this.selectedQuiz) {
         this.selectedQuiz.quizQuestions.push({ questionName: this.newQuestion });
