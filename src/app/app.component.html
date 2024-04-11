@@ -9,9 +9,18 @@
       </div>
     </div>
   </div>
+  <div class="row"
+    *ngIf="loadingQuizzes"
+  >
+    <div class="col-md-12">
+      <div class="alert alert-secondary mt-3">
+        Loading Quizzes...
+      </div>
+    </div>
+  </div>
   <div 
     class="row"
-    *ngIf="!errorLoadingQuizzes"
+    *ngIf="!errorLoadingQuizzes && !loadingQuizzes"
   >
     <div class="col-md-4">
       <button 
