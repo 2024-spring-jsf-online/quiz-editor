@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     public quizSvc: QuizService
   ) {
   }
-
+  loadingScreen = true;
   errorLoadingQuizzes = false;
 
   loadQuizzesFromCloud = async () => {
@@ -38,11 +38,13 @@ export class AppComponent implements OnInit {
           questionName: y.name
         }))
         , markedForDelete: false
-      }));      
+      }));  
+      this.loadingScreen = false;    
     }
     catch (err) {
       console.error(err);
-      this.errorLoadingQuizzes = true;      
+      this.errorLoadingQuizzes = true;  
+      this.loadingScreen = false;     
     }
   };
 
