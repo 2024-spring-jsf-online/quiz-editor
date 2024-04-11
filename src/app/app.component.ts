@@ -18,66 +18,67 @@ interface QuestionDisplay {
 })
 export class AppComponent implements OnInit {
   title = 'quiz-editor';
+  loading = true; // Initialize loading state
 
-  constructor(
-    public quizSvc: QuizService
-  ) {
-  }
+  constructor(public quizSvc: QuizService) {}
 
   ngOnInit() {
-    const quizzes = this.quizSvc.loadQuizzes();
-    console.log(quizzes);
-
-    this.quizzes = quizzes.map(x => ({
-      quizName: x.name
-      , quizQuestions: x.questions.map((y: any) => ({
-        questionName: y.name
-      }))
-      , markedForDelete: false
-    }));
-
-    console.log(this.quizzes);
+    this.loadQuizzes();
   }
 
   quizzes: QuizDisplay[] = [];
-
   selectedQuiz: QuizDisplay | undefined = undefined;
 
-  selectQuiz = (q: QuizDisplay) => {
+  loadQuizzes() {
+    this.loading = true; // Set loading to true when loading quizzes
+    const quizzes = this.quizSvc.loadQuizzes();
+    if (Array.isArray(quizzes)) {
+      this.quizzes = quizzes.map(x => ({
+        quizName: x.name,
+        quizQuestions: x.questions.map((y: any) => ({
+          questionName: y.name
+        })),
+        markedForDelete: false
+      }));
+      this.loading = false; // Set loading to false when quizzes are loaded successfully
+    } else {
+      console.error('Error loading quizzes: Invalid data format');
+      this.loading = false; // Set loading to false in case of error
+    }
+  }
+
+  selectQuiz(q: QuizDisplay) {
     this.selectedQuiz = q;
     console.log(this.selectedQuiz);
-  };
+  }
 
-  addNewQuiz = () => {
+  addNewQuiz() {
     const newQuiz = {
-      quizName: "Untitled Quiz"
-      , quizQuestions: []
-      , markedForDelete: false
+      quizName: 'Untitled Quiz',
+      quizQuestions: [],
+      markedForDelete: false
     };
 
-    this.quizzes = [
-      ...this.quizzes
-      , newQuiz 
-    ];
-
+    this.quizzes = [...this.quizzes, newQuiz];
     this.selectedQuiz = newQuiz;
-  };
+  }
 
-  addNewQuestion = () => {
-    
+  addNewQuestion() {
     if (this.selectedQuiz) {
       this.selectedQuiz.quizQuestions = [
-        ...this.selectedQuiz.quizQuestions
-        , {
-          questionName: "Untitled Question"
+        ...this.selectedQuiz.quizQuestions,
+        {
+          questionName: 'Untitled Question'
         }
       ];
     }
-  };
+  }
 
-  removeQuestion = (questionToRemove: QuestionDisplay) => {
+  removeQuestion(questionToRemove: QuestionDisplay) {
     if (this.selectedQuiz) {
-      this.selectedQuiz.quizQuestions = this.selectedQuiz.quizQuestions.filter(x => x !== questionToRemove);
+      this.selectedQuiz.quizQuestions = this.selectedQuiz.quizQuestions.filter(
+        x => x !== questionToRemove
+      );
     }
-  };
+  }
 }
