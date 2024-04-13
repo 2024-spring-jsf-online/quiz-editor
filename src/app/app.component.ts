@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   ) {
   }
 
+  loadingQuizzesAlert = true;
   errorLoadingQuizzes = false;
 
   loadQuizzesFromCloud = async () => {
@@ -43,6 +44,7 @@ export class AppComponent implements OnInit {
       console.error(err);
       this.errorLoadingQuizzes = true;
     }
+    this.loadingQuizzesAlert = false;
   };
 
   ngOnInit() {
