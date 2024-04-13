@@ -9,7 +9,7 @@ export class QuizService {
   
 loadQuizzes = () => {
 
-const quizzesFromWeb:any = [
+const quizzesFromWeb: any[] = [
   {
     name: 'Ouiz 1'
     , questions: [
