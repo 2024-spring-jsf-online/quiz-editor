@@ -4,9 +4,15 @@
     class="row"
     *ngIf="loading"
   >
-    Loading...
+    <div class="col md-12">
+      <div class="alert alert-dark mt-3">
+        <b>Loading...</b>
+      </div>
+    </div>
   </div>
 
+  <div
+  *ngIf="!loading">
   <div 
     class="row"
     *ngIf="errorLoadingQuizzes"
@@ -156,3 +162,5 @@
       </div>
     </div>
   </div>
+  </div>
+  
