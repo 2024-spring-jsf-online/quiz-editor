@@ -26,7 +26,6 @@ loadQuizzes = () => {
       , questions: []
     }
   ];
-
   return quizzesFromWeb;
 };
 }
