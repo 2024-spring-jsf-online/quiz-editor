@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     const quizzes = this.quizSvc.loadQuizzes();
     console.log(quizzes);
 
-    this.quizzes = quizzes.map((x: { name: any; questions: any[]; }) => ({
+    this.quizzes = quizzes.map(x => ({
       quizName: x.name
       , quizQuestions: x.questions.map((y: any) => ({
         questionName: y.name
