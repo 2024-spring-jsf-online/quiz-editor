@@ -238,16 +238,21 @@ export class AppComponent implements OnInit {
 
   saveQuizzes = async () => {
     try {
-      const newQuizzes: ShapeForSavingNewQuizzes[] = [];
-      
+      const newQuizzes: ShapeForSavingNewQuizzes[] = 
+          this.getAddedQuizzes().map((x) => ({
+            quizName: x.quizName,
+            quizQuestions: x.quizQuestions.map((y) =>
+              y.questionName
+            )
+          }));
+
       const editedQuizzes: ShapeForSavingEditedQuizzes[] = 
           this.getEditedQuizzes().map((x) => ({
               quiz: x.quizName,
               questions: x.quizQuestions.map((y) => ({
                 question: y.questionName
               }))
-            })
-          );
+            }));
 
       const numberOfUpdatedQuizzes = await this.quizSvc.saveQuizzes(
         editedQuizzes,
