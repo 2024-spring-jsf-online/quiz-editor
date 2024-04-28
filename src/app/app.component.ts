@@ -18,9 +18,8 @@ interface QuestionDisplay {
 export class AppComponent implements OnInit {
   title = 'quiz-editor';
 
-  constructor(
-    public quizSvc: QuizService
-  ) {
+  constructor(public quizSvc: QuizService) {
+
   }
 
   ngOnInit() {
@@ -45,4 +44,19 @@ export class AppComponent implements OnInit {
     this.selectedQuiz = q;
     console.log(this.selectedQuiz);
   };
+
+  addNewQuiz = () => {
+    const newQuiz = {
+      quizName: "Untitled",
+      quizQuestions: []
+    };
+
+    this.quizzes = [
+      ...this.quizzes,
+      newQuiz
+    ]
+
+    this.selectedQuiz = newQuiz;
+ }
+
 }
