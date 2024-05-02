@@ -20,8 +20,7 @@ export class AppComponent implements OnInit{
   title = 'quiz-editor';
 
   constructor(
-    public quizScv: QuizService
-  ) {
+    public quizScv: QuizService) {
   }
     ngOnInit() {
       const quizzes = this.quizScv.loadQuizzes();
@@ -41,6 +40,20 @@ export class AppComponent implements OnInit{
     selectQuiz = (q: QuizDisplay) => {
       this.selectedQuiz = q;
     };
+    addNewQuiz = () => {
+      const newQuiz = {
+        quizName: "Untitled",
+        quizQuestions: []
+      };
+  
+      this.quizzes = [
+        ...this.quizzes,
+        newQuiz
+      ]
+  
+      this.selectedQuiz = newQuiz;
    }
+  
+}
   
 
