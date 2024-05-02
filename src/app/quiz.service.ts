@@ -7,25 +7,26 @@ export class QuizService {
 
   constructor() { }
 
-    loadQuizes = () => {
+    loadQuizzes = () => {
 
-    const quizzesFromWeb any[] = [
+    const quizzesFromWeb: any[] = [
       {
-        name: 'quiz 01'
+      name: 'Quiz 1'
         , questions: [
           {
-          name: 'question 01'
+          name: 'Question 1'
           }
           ,{
-            name: 'question 02'
+            name: 'Question 02'
           }
           
         ]
       }
       ,{
-        name: 'quiz 02'
+        name: 'Quiz 2'
         , questions: []
       }
-    ]
+    ];
+    return quizzesFromWeb;
   };
 }
