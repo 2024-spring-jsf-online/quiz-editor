@@ -62,6 +62,18 @@
           >
             -{{ deletedQuizCount }}
           </span>
+          <span 
+            class="badge bg-success ms-1"
+            *ngIf="newlyAddedQuizCount > 0"
+          >
+            +{{ newlyAddedQuizCount }}
+          </span>
+          <span 
+            class="badge bg-secondary ms-1"
+            *ngIf="editedQuizCount > 0"
+          >
+            *{{ editedQuizCount }}
+          </span>
         </button>
         <button 
           class="btn btn-link"
