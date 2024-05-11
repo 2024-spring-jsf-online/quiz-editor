@@ -25,6 +25,7 @@ export class QuizService {
 
     return quizzesFromWeb;
   };
+
   getMagicNumber = (callerWantsToSucceed: boolean): Promise<number> => {
     return new Promise<number>(
       (resolve, reject) => {
