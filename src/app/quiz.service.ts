@@ -7,7 +7,7 @@ export class QuizService {
 
   constructor() { }
 
-  const loadQuizzes = () => {
+  loadQuizzes = () => {
     
     const quizzesFromWeb: any[] = [
       {
