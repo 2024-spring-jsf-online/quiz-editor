@@ -15,32 +15,41 @@ interface QuestionDisplay {
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
 export class AppComponent implements OnInit {
   title = 'quiz-editor';
+  quizzes: QuizDisplay[] = [];
+  selectedQuiz: QuizDisplay | undefined = undefined;
 
-  constructor(
-    public quizSvc: QuizService
-  ) {
-  }
+  constructor(public quizSvc: QuizService) {}
 
   ngOnInit() {
-  const quizzes = this.quizSvc.loadQuizzes();
-  console.log(quizzes);
+    const quizzes = this.quizSvc.loadQuizzes();
+    console.log(quizzes);
 
-  this.quizzes = quizzes.map(x => ({
-    quizName: x.name
-    , quizQuestions: x.questions.map((y: any) => ({
-      questionName: y.name
-    }))
-  }));
+    this.quizzes = quizzes.map(x => ({
+      quizName: x.name,
+      quizQuestions: x.questions.map((y: any) => ({
+        questionName: y.name
+      }))
+    }));
   }
-
-
-  quizzes: QuizDisplay[] = [];
-
-  selectedQuiz: QuizDisplay | undefined = undefined;
 
   selectQuiz = (q: QuizDisplay) => {
     this.selectedQuiz = q;
+    console.log(this.selectedQuiz);
   };
+addNewQuiz = () => {
+  const newQuiz = {
+    quizName: "Another Quiz"
+    , quizQuestions: []
+  };
+
+  this.quizzes = [
+    ...this.quizzes
+    , newQuiz
+  ];
+
+  this.selectedQuiz = newQuiz;
+}
 }
